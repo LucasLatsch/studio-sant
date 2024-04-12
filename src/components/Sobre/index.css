@@ -1,0 +1,18 @@
+/* Customiza todas as barras de scroll dentro do elemento */
+::-webkit-scrollbar {
+  width: 5px; /* Largura da barra de scroll */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor de fundo da trilha */
+  border-radius: 10px; /* Arredonda os cantos da trilha */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Cor da "mão" */
+  border-radius: 10px; /* Arredonda os cantos da "mão" */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Cor da "mão" quando hover */
+}
