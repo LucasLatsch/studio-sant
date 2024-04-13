@@ -84,7 +84,7 @@ export default function Sobre({ setSelectedItem }) {
           </Row>
           <Row
             style={{
-              height: "12rem",
+              height: "8rem",
               display: "grid",
               alignContent: "end",
               justifyContent: "center",
