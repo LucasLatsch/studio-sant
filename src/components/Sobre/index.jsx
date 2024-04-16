@@ -7,6 +7,7 @@ import Logo from "../Logo";
 import { IoClose } from "react-icons/io5";
 import { Row, Col } from "react-bootstrap";
 import YouTube from "react-youtube";
+import Card from 'react-bootstrap/Card';
 
 export default function Sobre({ setSelectedItem }) {
   const [expanded, setExpanded] = useState(false);
@@ -94,7 +95,7 @@ export default function Sobre({ setSelectedItem }) {
               <button
                 onClick={() => setExpanded(!expanded)}
                 style={{
-                  backgroundColor: "rgba(255,255,255,0.3)",
+                backgroundColor: "rgba(255,255,255,0.3)",
                   borderRadius: "15px",
                   padding: "5px",
                   width: "150px",
@@ -116,51 +117,41 @@ export default function Sobre({ setSelectedItem }) {
             backgroundImage: `url(${Teste})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
-            display: "flex",
-            justifyContent: "start",
-            alignItems: "center",
           }}
-        >
+      >
           <div>
-            <Row>
-              <Col>
-                <p
-                  style={{
-                    display: "flex",
-                    textAlign: "justify",
-                    width: "370px",
-                    fontSize: "16px",
-                    marginTop: "6.5rem",
-                    marginLeft: "9px",
-                  }}
-                >
-                  “Você é o protagonista” <br />
-                  <br />
-                  Somos um escritório jovem que prezamos em retratar a sua
-                  personalidade no seu projeto em um olhar contemporaneo.
-                  <br />
-                  <br /> Buscamos transformar desejos em realidade através de um
-                  design inovador.
-                  <br />
-                  <br /> Construímos histórias e laços juntos, tornando essa
-                  experiência mais que memorável...
-                </p>
-                <p
-                  style={{
-                    display: "flex",
-                    textAlign: "justify",
-                    width: "370px",
-                    fontSize: "16px",
-                    marginTop: "6.5rem",
-                    marginLeft: "9px",
-                  }}
-                >
-                  “Você é o protagonista” <br />
-                  <br />
-                  Somos um escritório jovem que prezamos em retratar a sua
-                  personalidade no seu projeto em um olhar contemporaneo.
-                </p>
-              </Col>
+            <Row 
+           style={{
+                      display: "flex",
+                      alignItems: "center",                      
+                      justifyContent: "start",
+                     padding: "15px",
+                    }} 
+            > 
+             {[1,2,3,4].map((item) => (
+              <Col
+                md={4}
+                key={item}
+             style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: "10px", 
+                      padding: "10px",
+                    }}
+                    >
+               <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={SobreImg} />
+      <Card.Body>
+        <Card.Title>Jhorran Sant</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content. 
+        </Card.Text>
+      </Card.Body>
+    </Card>
+                </Col>
+             ))}
             </Row>
           </div>
         </motion.div>

@@ -7,12 +7,11 @@ import Galeria from "../../assets/GALERIA.jpg";
 import Contato from "../../assets/CONTATO.jpg";
 import Item from "../../components/Item";
 import SobreComponent from "../../components/Sobre";
+import ContatoComponent from "../../components/Contato";
+import ProjetoComponent from "../../components/Projeto";
+import GaleriaComponent from "../../components/Art";
 import { Row, Col } from "react-bootstrap";
-import { IoClose } from "react-icons/io5";
-import Logo from "../Logo";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa6";
-import { FaPinterestP } from "react-icons/fa";
+
 
 function Principal() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -58,97 +57,13 @@ function Principal() {
         />
       </div>
       <AnimatePresence>
-        {selectedItem === 1 && (
-          <motion.div
-            className="content"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              backgroundImage: `url(${Projeto})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-            }}
-          >
-            <div>
-              <div>Conteúdo do !</div>
-              <button onClick={() => setSelectedItem(null)}>Voltar</button>
-            </div>
-          </motion.div>
+        {selectedItem === 1 && ( <ProjetoComponent setSelectedItem={setSelectedItem} />
         )}
-        {selectedItem === 2 && (
-          <SobreComponent setSelectedItem={setSelectedItem} />
+        {selectedItem === 2 && ( <SobreComponent setSelectedItem={setSelectedItem} />
         )}
-        {selectedItem === 3 && (
-          <motion.div
-            className="content"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              backgroundImage: `url(${Galeria})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-            }}
-          >
-            <div>
-              <div>Conteúdo do item</div>
-              <button onClick={() => setSelectedItem(null)}>Voltar</button>
-            </div>
-          </motion.div>
+        {selectedItem === 3 && ( <GaleriaComponent setSelectedItem={setSelectedItem} />
         )}
-        {selectedItem === 4 && (
-          <motion.div
-            className="content"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              backgroundImage: `url(${Contato})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Row style={{ width: "98vw" }}>
-              <Col>
-                <Logo />
-              </Col>
-              <Col style={{ display: "flex", justifyContent: "end" }}>
-                <IoClose
-                  style={{ fontSize: "25px", cursor: "pointer" }}
-                  onClick={() => setSelectedItem(null)}
-                />
-              </Col>
-            </Row>
-            <Row style={{ width: "100%" }}>
-              <Col style={{ marginLeft: "9px" }}>
-                <p>Rio de Janeiro</p>
-                <p>jsantarquitetura@gmail.com</p>
-                <p>+55 21 988141565</p>
-              </Col>
-            </Row>
-            <Row style={{ width: "100%" }}>
-              <Col
-                style={{
-                  display: "flex",
-                  justifyContent: "end",
-                  color: "white",
-                  fontSize: "20px",
-                  gap: "20px",
-                }}
-              >
-                <FaFacebookF />
-                <FaInstagram />
-                <FaPinterestP />
-              </Col>
-            </Row>
-          </motion.div>
+        {selectedItem === 4 && ( <ContatoComponent setSelectedItem={setSelectedItem} />
         )}
       </AnimatePresence>
     </div>
