@@ -40,7 +40,7 @@ export default function Projeto({ setSelectedItem }) {
               <Carousel 
               style={{
         width: "90vw",
-        height: "90vh"
+        height: "80vh"
        }}>
       <Carousel.Item>
        <img
@@ -48,7 +48,7 @@ export default function Projeto({ setSelectedItem }) {
         width: "100%",
         height: "100%"
        }}
-      src={ProjetoImg}
+      src="https://www.renderizo.com.br/renderizo/cozinha_01_b.jpg"
     />
         <Carousel.Caption>
           <h3>First slide label</h3>
@@ -58,8 +58,8 @@ export default function Projeto({ setSelectedItem }) {
       <Carousel.Item>
         <img
        style={{
-        width: "100px",
-        height: "100px"
+        width: "100%",
+        height: "100%"
        }}
       src={ProjetoImg}
     />
@@ -71,8 +71,8 @@ export default function Projeto({ setSelectedItem }) {
       <Carousel.Item>
         <img
        style={{
-        width: "100px",
-        height: "100px"
+        width: "100%",
+        height: "100%"
        }}
       src={ProjetoImg}
     />
