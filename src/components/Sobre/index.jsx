@@ -140,9 +140,11 @@ export default function Sobre({ setSelectedItem }) {
                       padding: "10px",
                     }}
                     >
-               <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={SobreImg} />
-      <Card.Body>
+              <Card style={{ width: '18rem', height: "20rem", backgroundImage: `url(${SobreImg})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover"}}>
+      
+      <Card.Body style={{ display: "flex", justifyContent: "end", flexDirection: "column"}}>
         <Card.Title>Jhorran Sant</Card.Title>
         <Card.Text>
           Some quick example text to build on the card title and make up the
@@ -150,6 +152,7 @@ export default function Sobre({ setSelectedItem }) {
         </Card.Text>
       </Card.Body>
     </Card>
+
                 </Col>
              ))}
             </Row>
