@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import VideoSrc from "../../assets/UP.mp4";
 import "./index.css";
 
-function Video({ onTimeout }) {
+function Video({ onTimeout, showSkipButton }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -20,22 +20,29 @@ function Video({ onTimeout }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{ position: "relative" }} // Ajuste no estilo para posicionar o botão conforme necessário
     >
-      <video ref={videoRef} controls autoPlay muted>
+      <video
+        ref={videoRef}
+        controls
+        autoPlay
+        muted
+        style={{ width: "100%", height: "100%" }}
+      >
         <source src={VideoSrc} type="video/mp4" />
         Seu navegador não suporta vídeos.
       </video>
-      <button
-        onClick={onTimeout}
-        style={{
-          position: "absolute", // Posicione o botão sobre o vídeo ou onde achar melhor
-          bottom: 20,
-          right: 20,
-        }}
-      >
-        Pular Vídeo
-      </button>
+      {showSkipButton && (
+        <button
+          onClick={onTimeout}
+          style={{
+            position: "absolute",
+            bottom: 20,
+            right: 20,
+          }}
+        >
+          Pular Vídeo
+        </button>
+      )}
     </motion.div>
   );
 }

@@ -7,7 +7,8 @@ import Logo from "../Logo";
 import { IoClose } from "react-icons/io5";
 import { Row, Col } from "react-bootstrap";
 import YouTube from "react-youtube";
-import Card from 'react-bootstrap/Card';
+import Card from "react-bootstrap/Card";
+import Video from "../Video";
 
 export default function Sobre({ setSelectedItem }) {
   const [expanded, setExpanded] = useState(false);
@@ -42,8 +43,16 @@ export default function Sobre({ setSelectedItem }) {
           overflowY: "hidden",
         }}
       >
-        <div>
-          <Row style={{ width: "98vw" }}>
+        <div
+          style={{
+            display: "flex",
+            height: "100%",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <Row>
             <Col>
               <Logo />
             </Col>
@@ -58,8 +67,8 @@ export default function Sobre({ setSelectedItem }) {
               />
             </Col>
           </Row>
-          <Row>
-            <Col>
+          <Row style={{ justifyContent: "space-between" }}>
+            <Col md={4}>
               <p
                 style={{
                   display: "flex",
@@ -82,10 +91,12 @@ export default function Sobre({ setSelectedItem }) {
                 experiência mais que memorável...
               </p>
             </Col>
+            <Col md={4}>
+              <Video />
+            </Col>
           </Row>
           <Row
             style={{
-              height: "8rem",
               display: "grid",
               alignContent: "end",
               justifyContent: "center",
@@ -95,7 +106,7 @@ export default function Sobre({ setSelectedItem }) {
               <button
                 onClick={() => setExpanded(!expanded)}
                 style={{
-                backgroundColor: "rgba(255,255,255,0.3)",
+                  backgroundColor: "rgba(255,255,255,0.3)",
                   borderRadius: "15px",
                   padding: "5px",
                   width: "150px",
@@ -118,43 +129,53 @@ export default function Sobre({ setSelectedItem }) {
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}
-      >
+        >
           <div>
-            <Row 
-           style={{
-                      display: "flex",
-                      alignItems: "center",                      
-                      justifyContent: "start",
-                     padding: "15px",
-                    }} 
-            > 
-             {[1,2,3,4].map((item) => (
-              <Col
-                md={4}
-                key={item}
-             style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginBottom: "10px", 
-                      padding: "10px",
+            <Row
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "start",
+                padding: "15px",
+              }}
+            >
+              {[1, 2, 3, 4].map((item) => (
+                <Col
+                  md={4}
+                  key={item}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "10px",
+                    padding: "10px",
+                  }}
+                >
+                  <Card
+                    style={{
+                      width: "18rem",
+                      height: "20rem",
+                      backgroundImage: `url(${SobreImg})`,
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
                     }}
+                  >
+                    <Card.Body
+                      style={{
+                        display: "flex",
+                        justifyContent: "end",
+                        flexDirection: "column",
+                      }}
                     >
-              <Card style={{ width: '18rem', height: "20rem", backgroundImage: `url(${SobreImg})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover"}}>
-      
-      <Card.Body style={{ display: "flex", justifyContent: "end", flexDirection: "column"}}>
-        <Card.Title>Jhorran Sant</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content. 
-        </Card.Text>
-      </Card.Body>
-    </Card>
-
+                      <Card.Title>Jhorran Sant</Card.Title>
+                      <Card.Text>
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
                 </Col>
-             ))}
+              ))}
             </Row>
           </div>
         </motion.div>

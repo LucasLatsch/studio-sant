@@ -1,0 +1,15 @@
+.carousel-item.active {
+  height: 70vh;
+}
+.carousel-item {
+  height: 70vh;
+}
+
+.card-body {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card:hover .card-body {
+  opacity: 1;
+}

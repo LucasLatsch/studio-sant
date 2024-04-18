@@ -18,7 +18,9 @@ function App() {
       <main>
         <div>
           {componenteAtivo === 1 && <Card onTimeout={handleTimeout} />}
-          {componenteAtivo === 2 && <Video onTimeout={handleTimeout} />}
+          {componenteAtivo === 2 && (
+            <Video onTimeout={handleTimeout} showSkipButton={true} />
+          )}
           {componenteAtivo === 3 && <Principal />}
         </div>
       </main>

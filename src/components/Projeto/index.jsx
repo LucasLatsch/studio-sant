@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./index.css";
 import ProjetoImg from "../../assets/PROJETO.jpg";
 import { Row, Col } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
 import Logo from "../Logo";
 import { motion } from "framer-motion";
-import Carousel from 'react-bootstrap/Carousel';
-import Card from 'react-bootstrap/Card';
+import Carousel from "react-bootstrap/Carousel";
+import Card from "react-bootstrap/Card";
 import SobreImg from "../../assets/SOBRE.jpg";
 import Teste from "../../assets/fundo-studio-jsant.jpg";
 
 export default function Projeto({ setSelectedItem }) {
- 
- const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const expandedContentRef = useRef(null);
   useEffect(() => {
     if (expanded && expandedContentRef.current) {
@@ -22,89 +22,125 @@ export default function Projeto({ setSelectedItem }) {
   const handleClick = () => {
     setSelectedItem(null);
     setExpanded(false);
-  }; 
- 
- return (
+  };
+
+  const items = [
+    {
+      id: 1,
+      img: "https://www.renderizo.com.br/renderizo/cozinha_01_b.jpg",
+      title: "Cozinha Moderna",
+      subtitle:
+        "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    },
+    {
+      id: 2,
+      img: "https://www.renderizo.com.br/renderizo/casa-dia-01.jpg",
+      title: "Casa ao Dia",
+      subtitle: "Luz natural",
+    },
+    {
+      id: 3,
+      img: "https://www.renderizo.com.br/renderizo/casa-dia-02.jpg",
+      title: "Casa ao Dia",
+      subtitle: "Varanda espaçosa",
+    },
+    {
+      id: 4,
+      img: "https://www.renderizo.com.br/renderizo/cozinha3_g.jpg",
+      title: "Cozinha Gourmet",
+      subtitle: "Pronta para jantares",
+    },
+    {
+      id: 5,
+      img: "https://www.renderizo.com.br/renderizo/cozinha_01_foco-mesa.jpg",
+      title: "Cozinha Focada",
+      subtitle: "Detalhe na Mesa",
+    },
+    {
+      id: 6,
+      img: "https://d1swvgohc7oxrg.cloudfront.net/filer_public/2a/3f/2a3f8506-047f-4a57-8d05-c4d7fe68300d/v4qqywrw.jpg",
+      title: "Sala Focada",
+      subtitle: "Mesa e iluminação",
+    },
+  ];
+
+  return (
     <>
       <motion.div
-    className="content"
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.8 }}
-    transition={{ duration: 0.5 }}
-    style={{
-        backgroundImage: `url('https://lh3.googleusercontent.com/pw/AP1GczMC_bEPLJncdyvfW_pwM8nV06WqXfzngPvlA2t8mgakaoR0ZpVQn3w96GLmHTHEn8sLjgrW9KZT96_hokng0XKfD4rdDhlOd3DNgfYUpsF59rLkQmHu5bW4TnZqPrbjq4Wg0J2pbErqFdBN2lZrdyVv=w1620-h1620-s-no?authuser=0')`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        display: "flex",
-        justifyContent: "start",
-        alignItems: "center",
+        className="content"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.5 }}
+        style={{
+          backgroundImage: `url('https://lh3.googleusercontent.com/pw/AP1GczMC_bEPLJncdyvfW_pwM8nV06WqXfzngPvlA2t8mgakaoR0ZpVQn3w96GLmHTHEn8sLjgrW9KZT96_hokng0XKfD4rdDhlOd3DNgfYUpsF59rLkQmHu5bW4TnZqPrbjq4Wg0J2pbErqFdBN2lZrdyVv=w1620-h1620-s-no?authuser=0')`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          display: "flex",
+          justifyContent: "start",
+          alignItems: "center",
           overflowX: "hidden",
           overflowY: "hidden",
-    }}
-   >
-     <div>
-           <Row style={{ width: "98vw" }}>
-              <Col>
-                <Logo />
-              </Col>
-              <Col style={{ display: "flex", justifyContent: "end" }}>
-                <IoClose
-                  style={{ fontSize: "25px", cursor: "pointer" }}
-                  onClick={() => handleClick()}
-                />
-              </Col>
-            </Row>                        
-            <Row> 
-            <div style={{
-        height: "70vh", display: "flex", justifyContent: "center", alignItems: "center"}}        
-      > 
-              <Carousel>
-      <Carousel.Item>
-       <img
-       style={{
-        height: "40rem",
-        width: "48rem"
-       }}
-      src="https://www.renderizo.com.br/renderizo/cozinha_01_b.jpg"
-    />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-       style={{
-        height: "40rem"
-       }}
-      src={ProjetoImg}
-    />
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-       style={{
-        height: "40rem"
-       }}
-      src={ProjetoImg}
-    />
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
-    </div>
-   </Row> 
-    <Row
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            height: "100%",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <Row>
+            <Col>
+              <Logo />
+            </Col>
+            <Col style={{ display: "flex", justifyContent: "end" }}>
+              <IoClose
+                style={{
+                  fontSize: "25px",
+                  cursor: "pointer",
+                  position: "fixed",
+                }}
+                onClick={() => handleClick()}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Carousel
+                style={{
+                  height: "70vh",
+                  width: "90vw",
+                }}
+              >
+                {items.map((item) => (
+                  <Carousel.Item key={item.id}>
+                    <img
+                      style={{
+                        height: "100%",
+                        width: "100%",
+                      }}
+                      src={item.img}
+                    />
+                    <Carousel.Caption>
+                      <h3>{item.title}</h3>
+                      <p>{item.subtitle}</p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </div>
+          </Row>
+          <Row
             style={{
-              height: "8rem",
               display: "grid",
               alignContent: "end",
               justifyContent: "center",
@@ -114,7 +150,7 @@ export default function Projeto({ setSelectedItem }) {
               <button
                 onClick={() => setExpanded(!expanded)}
                 style={{
-                backgroundColor: "rgba(255,255,255,0.3)",
+                  backgroundColor: "rgba(255,255,255,0.3)",
                   borderRadius: "15px",
                   padding: "5px",
                   width: "150px",
@@ -124,60 +160,66 @@ export default function Projeto({ setSelectedItem }) {
               </button>
             </Col>
           </Row>
-          </div>
+        </div>
       </motion.div>
       {expanded && (
         <motion.div
           ref={expandedContentRef}
           className="content1"
-          // exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.5 }}
           style={{
             backgroundImage: `url(${Teste})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}
-      >
+        >
           <div>
-            <Row 
-           style={{
-                      display: "flex",
-                      alignItems: "center",                      
-                      justifyContent: "start",
-                     padding: "15px",
-                    }} 
-            > 
-             {[1,2,3,4].map((item) => (
-              <Col
-                md={4}
-                key={item}
-             style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginBottom: "10px", 
-                      padding: "10px",
+            <Row
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "start",
+                padding: "15px",
+              }}
+            >
+              {items.map((item) => (
+                <Col
+                  md={3}
+                  key={item.id}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "10px",
+                    padding: "10px",
+                  }}
+                >
+                  <Card
+                    style={{
+                      height: "20rem",
+                      backgroundImage: `url(${item.img})`,
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
                     }}
+                  >
+                    <Card.Body
+                      style={{
+                        display: "flex",
+                        justifyContent: "end",
+                        flexDirection: "column",
+                        minWidth: "308px",
+                      }}
                     >
-              <Card style={{ width: '18rem', height: "20rem", backgroundImage: `url(${SobreImg})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover"}}>
-      
-      <Card.Body style={{ display: "flex", justifyContent: "end", flexDirection: "column"}}>
-        <Card.Title>Jhorran Sant</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content. 
-        </Card.Text>
-      </Card.Body>
-    </Card>
-
+                      <Card.Title>{item.title}</Card.Title>
+                      <Card.Text>{item.subtitle}</Card.Text>
+                    </Card.Body>
+                  </Card>
                 </Col>
-             ))}
+              ))}
             </Row>
           </div>
         </motion.div>
-       )}
+      )}
     </>
- );
+  );
 }
