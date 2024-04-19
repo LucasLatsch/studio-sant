@@ -92,7 +92,7 @@ export default function Projeto({ setSelectedItem }) {
             width: "100%",
           }}
         >
-          <Row>
+          <Row style={{ color: "white" }}>
             <Col>
               <Logo />
             </Col>
@@ -102,6 +102,8 @@ export default function Projeto({ setSelectedItem }) {
                   fontSize: "25px",
                   cursor: "pointer",
                   position: "fixed",
+                  backgroundColor: "rgba(0, 0, 0, 0.3)",
+                  borderRadius: "5px",
                 }}
                 onClick={() => handleClick()}
               />
@@ -130,10 +132,10 @@ export default function Projeto({ setSelectedItem }) {
                       }}
                       src={item.img}
                     />
-                    <Carousel.Caption>
+                    {/* <Carousel.Caption>
                       <h3>{item.title}</h3>
                       <p>{item.subtitle}</p>
-                    </Carousel.Caption>
+                    </Carousel.Caption> */}
                   </Carousel.Item>
                 ))}
               </Carousel>
@@ -202,16 +204,17 @@ export default function Projeto({ setSelectedItem }) {
                       backgroundSize: "cover",
                     }}
                   >
-                    <Card.Body
-                      style={{
-                        display: "flex",
-                        justifyContent: "end",
-                        flexDirection: "column",
-                        minWidth: "308px",
-                      }}
-                    >
-                      <Card.Title>{item.title}</Card.Title>
-                      <Card.Text>{item.subtitle}</Card.Text>
+                    <Card.Body>
+                      <div
+                        style={{
+                          backgroundColor: "rgba(0,0,0,0.5)",
+                          padding: "5px",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <Card.Title>{item.title}</Card.Title>
+                        <Card.Text>{item.subtitle}</Card.Text>
+                      </div>
                     </Card.Body>
                   </Card>
                 </Col>

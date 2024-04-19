@@ -7,9 +7,25 @@
 
 .card-body {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in;
+  color: aliceblue;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  min-width: 308px;
 }
 
 .card:hover .card-body {
   opacity: 1;
+}
+
+.card {
+  filter: grayscale(0%);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s ease-in;
+}
+
+.card:hover {
+  filter: grayscale(100%);
 }
