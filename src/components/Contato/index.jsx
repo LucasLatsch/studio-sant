@@ -6,9 +6,19 @@ import Logo from "../Logo";
 import { FaLinkedin } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FaPinterestP } from "react-icons/fa";
+import { TbMailShare } from "react-icons/tb";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 export default function Contato({ setSelectedItem }) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <motion.div
@@ -47,9 +57,19 @@ export default function Contato({ setSelectedItem }) {
             </Col>
           </Row>
           <Row>
-            <Col style={{ marginLeft: "9px" }}>
+            <Col style={{ marginLeft: "9px", fontWeight: "500" }}>
               <p>Rio de Janeiro</p>
-              <p>jsantarquitetura@gmail.com</p>
+              <p>
+                jsantarquitetura@gmail.com
+                <TbMailShare
+                  onClick={handleShow}
+                  style={{
+                    fontSize: "18px",
+                    cursor: "pointer",
+                    marginLeft: "5px",
+                  }}
+                />
+              </p>
               <p>+55 21 988141565</p>
             </Col>
           </Row>
@@ -81,6 +101,38 @@ export default function Contato({ setSelectedItem }) {
           </Row>
         </div>
       </motion.div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Example textarea</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

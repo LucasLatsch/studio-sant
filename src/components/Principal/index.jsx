@@ -12,7 +12,6 @@ import ProjetoComponent from "../../components/Projeto";
 import GaleriaComponent from "../../components/Art";
 import { Row, Col } from "react-bootstrap";
 
-
 function Principal() {
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -42,7 +41,9 @@ function Principal() {
         <Item
           key={3}
           id={3}
-          img={Galeria}
+          img={
+            "https://lh3.googleusercontent.com/pw/AP1GczObSlmdTOKypzRYP9ls-lpT7FRVgk0DAs3-7xAtu59lOkJU9fOBvApRWEO2MjO7wsfeWbm4OUmbCBz3s9te2WKv2lbyj63QAy5RL-yO0jiPgfH8dGt5blX9iIcg4Q2w8mxhS8u_Dke0y4iwMzny-eYq=w950-h633-s-no-gm?authuser=0"
+          }
           title={"arte & design."}
           isSelected={selectedItem === 3}
           onClick={handleItemClick}
@@ -57,13 +58,17 @@ function Principal() {
         />
       </div>
       <AnimatePresence>
-        {selectedItem === 1 && ( <ProjetoComponent setSelectedItem={setSelectedItem} />
+        {selectedItem === 1 && (
+          <ProjetoComponent setSelectedItem={setSelectedItem} />
         )}
-        {selectedItem === 2 && ( <SobreComponent setSelectedItem={setSelectedItem} />
+        {selectedItem === 2 && (
+          <SobreComponent setSelectedItem={setSelectedItem} />
         )}
-        {selectedItem === 3 && ( <GaleriaComponent setSelectedItem={setSelectedItem} />
+        {selectedItem === 3 && (
+          <GaleriaComponent setSelectedItem={setSelectedItem} />
         )}
-        {selectedItem === 4 && ( <ContatoComponent setSelectedItem={setSelectedItem} />
+        {selectedItem === 4 && (
+          <ContatoComponent setSelectedItem={setSelectedItem} />
         )}
       </AnimatePresence>
     </div>

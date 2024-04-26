@@ -27,7 +27,7 @@ export default function Projeto({ setSelectedItem }) {
   const items = [
     {
       id: 1,
-      img: "https://www.renderizo.com.br/renderizo/cozinha_01_b.jpg",
+      img: "https://lh3.googleusercontent.com/pw/AP1GczOpfB6BUY8aCxSnafBJYcAXIgtto_DVMvgEZk-CZqdMT__GTQ8cVVShkDaFN7ZNgGIgjUInNMZgAJksVUOt0tvCY-hjHURQJcLvzXc06q_Jm_5s9vaaAA-ZbCOWj9EF5zeN1Qm-wN97krn01Y6tQeKr=w1073-h633-s-no-gm?authuser=0",
       title: "Cozinha Moderna",
       subtitle:
         "Some quick example text to build on the card title and make up the bulk of the card's content.",
@@ -120,7 +120,7 @@ export default function Projeto({ setSelectedItem }) {
               <Carousel
                 style={{
                   height: "70vh",
-                  width: "90vw",
+                  width: "70vw",
                 }}
               >
                 {items.map((item) => (
@@ -205,13 +205,7 @@ export default function Projeto({ setSelectedItem }) {
                     }}
                   >
                     <Card.Body>
-                      <div
-                        style={{
-                          backgroundColor: "rgba(0,0,0,0.5)",
-                          padding: "5px",
-                          borderRadius: "5px",
-                        }}
-                      >
+                      <div>
                         <Card.Title>{item.title}</Card.Title>
                         <Card.Text>{item.subtitle}</Card.Text>
                       </div>

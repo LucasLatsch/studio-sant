@@ -5,7 +5,7 @@ function Logo() {
     <div>
       <h1
         style={{
-          gap: "5px",
+          gap: "10px",
           display: "flex",
           width: "250px",
           justifyContent: "center",

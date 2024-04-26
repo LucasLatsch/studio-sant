@@ -1,19 +1,31 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import VideoSrc from "../../assets/UP.mp4";
 import "./index.css";
 
-function Video({ onTimeout, showSkipButton }) {
+function Video({ showSkipButton }) {
   const videoRef = useRef(null);
+  const navigate = useNavigate(); // Obtenha o método navigate
 
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      const handleVideoEnd = () => onTimeout();
-      video.addEventListener("ended", handleVideoEnd);
-      return () => video.removeEventListener("ended", handleVideoEnd);
-    }
-  }, [onTimeout]);
+
+    const handleVideoEnd = () => {
+      navigate("/studio-sant/principal"); // Redireciona após o vídeo terminar
+    };
+
+    video.addEventListener("ended", handleVideoEnd);
+
+    return () => {
+      video.removeEventListener("ended", handleVideoEnd);
+    };
+  }, [navigate]);
+
+  // Opção para pular o vídeo
+  const skipVideo = () => {
+    navigate("/studio-sant/principal"); // Redireciona ao clicar no botão "Pular Vídeo"
+  };
 
   return (
     <motion.div
@@ -33,7 +45,7 @@ function Video({ onTimeout, showSkipButton }) {
       </video>
       {showSkipButton && (
         <button
-          onClick={onTimeout}
+          onClick={skipVideo}
           style={{
             position: "absolute",
             bottom: 20,

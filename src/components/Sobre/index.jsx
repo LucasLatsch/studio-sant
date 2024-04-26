@@ -75,7 +75,6 @@ export default function Sobre({ setSelectedItem }) {
                   textAlign: "justify",
                   width: "370px",
                   fontSize: "16px",
-                  marginTop: "6.5rem",
                   marginLeft: "9px",
                 }}
               >

@@ -1,16 +1,20 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import Logo from "../Logo";
 
-function Card({ onTimeout }) {
+function Card() {
+  const navigate = useNavigate(); // Obtenha o método navigate
+
   useEffect(() => {
     const timeout = setTimeout(() => {
-      onTimeout();
+      // Quando o tempo acabar, redirecione para a rota de vídeo
+      navigate("/studio-sant/video");
     }, 2000);
 
     return () => clearTimeout(timeout);
-  }, [onTimeout]);
+  }, [navigate]);
 
   return (
     <>
