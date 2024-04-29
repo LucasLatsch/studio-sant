@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 import ProjetoImg from "../../assets/PROJETO.jpg";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Modal, Button } from "react-bootstrap"; // Importe o Modal e o Button do react-bootstrap
 import { IoClose } from "react-icons/io5";
 import Logo from "../Logo";
 import { motion } from "framer-motion";
@@ -12,6 +12,8 @@ import Teste from "../../assets/fundo-studio-jsant.jpg";
 
 export default function Projeto({ setSelectedItem }) {
   const [expanded, setExpanded] = useState(false);
+  const [showModal, setShowModal] = useState(false); // Estado para controlar a exibição do modal
+  const [selectedImg, setSelectedImg] = useState(""); // Estado para armazenar a imagem selecionada
   const expandedContentRef = useRef(null);
   useEffect(() => {
     if (expanded && expandedContentRef.current) {
@@ -24,13 +26,24 @@ export default function Projeto({ setSelectedItem }) {
     setExpanded(false);
   };
 
+  const handleCardClick = (img) => {
+    // Função para lidar com o clique no card
+    setSelectedImg(img);
+    setShowModal(true); // Abre o modal quando o card é clicado
+  };
+
+  const closeModal = () => {
+    // Função para fechar o modal
+    setShowModal(false);
+    setSelectedImg("");
+  };
+
   const items = [
     {
       id: 1,
-      img: "https://lh3.googleusercontent.com/pw/AP1GczOpfB6BUY8aCxSnafBJYcAXIgtto_DVMvgEZk-CZqdMT__GTQ8cVVShkDaFN7ZNgGIgjUInNMZgAJksVUOt0tvCY-hjHURQJcLvzXc06q_Jm_5s9vaaAA-ZbCOWj9EF5zeN1Qm-wN97krn01Y6tQeKr=w1073-h633-s-no-gm?authuser=0",
+      img: "https://lh3.googleusercontent.com/pw/AP1GczNQQCLKu3qvma25GsvpVGMzu_sbvLeesaAbfpwozjUGkIAh4OVkFO30DID0y6HjhsqCAF6xitO1W1hKtExETtxDqF2DJfpLy986d3-wG_xpE2MTbTVQ7_AzZD-Y446R6tuRq9TVw0OJR3JJFmGQAH4=w625-h633-s-no-gm?authuser=0",
       title: "Cozinha Moderna",
-      subtitle:
-        "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      subtitle: "Some quick example text",
     },
     {
       id: 2,
@@ -73,7 +86,7 @@ export default function Projeto({ setSelectedItem }) {
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.5 }}
         style={{
-          backgroundImage: `url('https://lh3.googleusercontent.com/pw/AP1GczMC_bEPLJncdyvfW_pwM8nV06WqXfzngPvlA2t8mgakaoR0ZpVQn3w96GLmHTHEn8sLjgrW9KZT96_hokng0XKfD4rdDhlOd3DNgfYUpsF59rLkQmHu5bW4TnZqPrbjq4Wg0J2pbErqFdBN2lZrdyVv=w1620-h1620-s-no?authuser=0')`,
+          backgroundImage: `url(${ProjetoImg})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           display: "flex",
@@ -119,23 +132,19 @@ export default function Projeto({ setSelectedItem }) {
             >
               <Carousel
                 style={{
-                  height: "70vh",
-                  width: "70vw",
+                  // maxHeight: "70vh",
+                  maxWidth: "60vw",
                 }}
               >
                 {items.map((item) => (
                   <Carousel.Item key={item.id}>
                     <img
                       style={{
-                        height: "100%",
+                        // height: "auto",
                         width: "100%",
                       }}
                       src={item.img}
                     />
-                    {/* <Carousel.Caption>
-                      <h3>{item.title}</h3>
-                      <p>{item.subtitle}</p>
-                    </Carousel.Caption> */}
                   </Carousel.Item>
                 ))}
               </Carousel>
@@ -186,7 +195,10 @@ export default function Projeto({ setSelectedItem }) {
             >
               {items.map((item) => (
                 <Col
-                  md={3}
+                  md={6}
+                  lg={4}
+                  xl={4}
+                  xxl={3}
                   key={item.id}
                   style={{
                     display: "flex",
@@ -199,10 +211,13 @@ export default function Projeto({ setSelectedItem }) {
                   <Card
                     style={{
                       height: "20rem",
+                      maxWidth: "19.25rem",
                       backgroundImage: `url(${item.img})`,
                       backgroundPosition: "center",
                       backgroundSize: "cover",
+                      cursor: "pointer",
                     }}
+                    onClick={() => handleCardClick(item.img)}
                   >
                     <Card.Body>
                       <div>
@@ -217,6 +232,24 @@ export default function Projeto({ setSelectedItem }) {
           </div>
         </motion.div>
       )}
+      {/* Modal para exibir a imagem selecionada */}
+      <Modal show={showModal} onHide={closeModal} centered>
+        <Modal.Body>
+          <IoClose
+            style={{
+              fontSize: "25px",
+              cursor: "pointer",
+              position: "absolute",
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              borderRadius: "5px",
+              right: "0px",
+              margin: "5px",
+            }}
+            onClick={closeModal}
+          />
+          <img src={selectedImg} alt="Imagem" style={{ width: "100%" }} />
+        </Modal.Body>
+      </Modal>
     </>
   );
 }

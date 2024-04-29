@@ -90,8 +90,30 @@ export default function Sobre({ setSelectedItem }) {
                 experiência mais que memorável...
               </p>
             </Col>
-            <Col md={4}>
-              <Video />
+            <Col md={5} style={{ display: "flex", justifyContent: "center" }}>
+              <div
+                style={{
+                  borderRadius: "20px",
+                }}
+              >
+                <YouTube
+                  className="sobre"
+                  videoId="84oBrArWcM0"
+                  opts={{
+                    width: "470px",
+                    height: "264px",
+                    playerVars: {
+                      mute: 0,
+                      autoplay: 1,
+                      controls: 1,
+                      fs: 1,
+                      color: "white",
+                      loop: 0,
+                      rel: 0,
+                    },
+                  }}
+                />
+              </div>
             </Col>
           </Row>
           <Row

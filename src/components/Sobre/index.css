@@ -16,3 +16,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555; /* Cor da "mão" quando hover */
 }
+
+.sobre iframe {
+  border-radius: 5px;
+}

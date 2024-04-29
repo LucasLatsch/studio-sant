@@ -1,55 +1,55 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import VideoSrc from "../../assets/UP.mp4";
 import "./index.css";
+import YouTube from "react-youtube";
 
-function Video({ showSkipButton }) {
+function Video({ onTimeout, showSkipButton }) {
   const videoRef = useRef(null);
-  const navigate = useNavigate(); // Obtenha o método navigate
 
   useEffect(() => {
     const video = videoRef.current;
-
-    const handleVideoEnd = () => {
-      navigate("/studio-sant/principal"); // Redireciona após o vídeo terminar
-    };
-
-    video.addEventListener("ended", handleVideoEnd);
-
-    return () => {
-      video.removeEventListener("ended", handleVideoEnd);
-    };
-  }, [navigate]);
-
-  // Opção para pular o vídeo
-  const skipVideo = () => {
-    navigate("/studio-sant/principal"); // Redireciona ao clicar no botão "Pular Vídeo"
-  };
+    if (video) {
+      const handleVideoEnd = () => onTimeout();
+      video.addEventListener("ended", handleVideoEnd);
+      return () => video.removeEventListener("ended", handleVideoEnd);
+    }
+  }, [onTimeout]);
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      style={{ width: "100vw", height: "100vh", overflow: "hidden" }}
     >
-      <video
-        ref={videoRef}
-        controls
-        autoPlay
-        muted
-        style={{ width: "100%", height: "100%" }}
-      >
-        <source src={VideoSrc} type="video/mp4" />
-        Seu navegador não suporta vídeos.
-      </video>
+      <YouTube
+        className="full"
+        videoId="84oBrArWcM0"
+        opts={{
+          width: "470px",
+          height: "264px",
+          playerVars: {
+            mute: 0,
+            autoplay: 0,
+            controls: 1,
+            fs: 1,
+            color: "white",
+            loop: 0,
+            rel: 0,
+          },
+        }}
+      />
       {showSkipButton && (
         <button
-          onClick={skipVideo}
+          onClick={onTimeout}
           style={{
             position: "absolute",
-            bottom: 20,
-            right: 20,
+            bottom: "60px",
+            right: "20px",
+            padding: "5px",
+            borderRadius: "5px",
+            backgroundColor: "rgb(255,255,255,0.1)",
+            color: "white",
           }}
         >
           Pular Vídeo

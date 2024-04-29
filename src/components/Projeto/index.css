@@ -4,6 +4,9 @@
 .carousel-item {
   height: 70vh;
 }
+.carousel {
+  height: 70vh;
+}
 
 .card-body {
   opacity: 0;
@@ -28,4 +31,8 @@
 
 .card:hover {
   filter: grayscale(100%);
+}
+
+.modal-body {
+  padding: 0;
 }
