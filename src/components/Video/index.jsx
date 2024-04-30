@@ -24,13 +24,13 @@ function Video({ onTimeout, showSkipButton }) {
     >
       <YouTube
         className="full"
-        videoId="84oBrArWcM0"
+        videoId="5Gdbf0Hjzcw"
         opts={{
           width: "470px",
           height: "264px",
           playerVars: {
-            mute: 0,
-            autoplay: 0,
+            mute: 1,
+            autoplay: 1,
             controls: 1,
             fs: 1,
             color: "white",

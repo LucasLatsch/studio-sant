@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
-import ProjetoImg from "../../assets/PROJETO.jpg";
 import { Row, Col, Modal, Button } from "react-bootstrap"; // Importe o Modal e o Button do react-bootstrap
 import { IoClose } from "react-icons/io5";
 import Logo from "../Logo";
 import { motion } from "framer-motion";
 import Carousel from "react-bootstrap/Carousel";
 import Card from "react-bootstrap/Card";
-import SobreImg from "../../assets/SOBRE.jpg";
 import Teste from "../../assets/fundo-studio-jsant.jpg";
 
 export default function Projeto({ setSelectedItem }) {
@@ -41,39 +39,33 @@ export default function Projeto({ setSelectedItem }) {
   const items = [
     {
       id: 1,
-      img: "https://lh3.googleusercontent.com/pw/AP1GczNQQCLKu3qvma25GsvpVGMzu_sbvLeesaAbfpwozjUGkIAh4OVkFO30DID0y6HjhsqCAF6xitO1W1hKtExETtxDqF2DJfpLy986d3-wG_xpE2MTbTVQ7_AzZD-Y446R6tuRq9TVw0OJR3JJFmGQAH4=w625-h633-s-no-gm?authuser=0",
+      img: "https://github.com/LucasLatsch/Img/blob/main/01.jpg?raw=true",
       title: "Cozinha Moderna",
       subtitle: "Some quick example text",
     },
     {
       id: 2,
-      img: "https://www.renderizo.com.br/renderizo/casa-dia-01.jpg",
+      img: "https://github.com/LucasLatsch/Img/blob/main/02.jpg?raw=true",
       title: "Casa ao Dia",
       subtitle: "Luz natural",
     },
     {
       id: 3,
-      img: "https://www.renderizo.com.br/renderizo/casa-dia-02.jpg",
+      img: "https://github.com/LucasLatsch/Img/blob/main/03.jpg?raw=true",
       title: "Casa ao Dia",
       subtitle: "Varanda espaçosa",
     },
     {
       id: 4,
-      img: "https://www.renderizo.com.br/renderizo/cozinha3_g.jpg",
+      img: "https://github.com/LucasLatsch/Img/blob/main/04.jpg?raw=true",
       title: "Cozinha Gourmet",
       subtitle: "Pronta para jantares",
     },
     {
       id: 5,
-      img: "https://www.renderizo.com.br/renderizo/cozinha_01_foco-mesa.jpg",
+      img: "https://github.com/LucasLatsch/Img/blob/main/05.jpg?raw=true",
       title: "Cozinha Focada",
       subtitle: "Detalhe na Mesa",
-    },
-    {
-      id: 6,
-      img: "https://d1swvgohc7oxrg.cloudfront.net/filer_public/2a/3f/2a3f8506-047f-4a57-8d05-c4d7fe68300d/v4qqywrw.jpg",
-      title: "Sala Focada",
-      subtitle: "Mesa e iluminação",
     },
   ];
 
@@ -86,7 +78,7 @@ export default function Projeto({ setSelectedItem }) {
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.5 }}
         style={{
-          backgroundImage: `url(${ProjetoImg})`,
+          backgroundImage: `url("https://github.com/LucasLatsch/Img/blob/main/RS_IMG01.jpg?raw=true")`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           display: "flex",
@@ -122,33 +114,21 @@ export default function Projeto({ setSelectedItem }) {
               />
             </Col>
           </Row>
-          <Row>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Carousel
-                style={{
-                  // maxHeight: "70vh",
-                  maxWidth: "60vw",
-                }}
-              >
-                {items.map((item) => (
-                  <Carousel.Item key={item.id}>
-                    <img
-                      style={{
-                        // height: "auto",
-                        width: "100%",
-                      }}
-                      src={item.img}
-                    />
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-            </div>
+          <Row style={{ justifyContent: "space-around" }}>
+            <Carousel>
+              {items.map((item) => (
+                <Carousel.Item key={item.id}>
+                  <img
+                    style={{
+                      // height: "auto",
+                      width: "100%",
+                    }}
+                    src={item.img}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+            {/* </div> */}
           </Row>
           <Row
             style={{
@@ -232,7 +212,6 @@ export default function Projeto({ setSelectedItem }) {
           </div>
         </motion.div>
       )}
-      {/* Modal para exibir a imagem selecionada */}
       <Modal show={showModal} onHide={closeModal} centered>
         <Modal.Body>
           <IoClose

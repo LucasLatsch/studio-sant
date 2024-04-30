@@ -24,6 +24,33 @@ export default function Sobre({ setSelectedItem }) {
     setExpanded(false);
   };
 
+  const equipe = [
+    {
+      id: 1,
+      img: "https://github.com/LucasLatsch/Img/blob/main/Jhorran%20Sant.jpg?raw=true",
+      title: "Jhorran",
+      subtitle: "Some quick example text",
+    },
+    {
+      id: 2,
+      img: "https://github.com/LucasLatsch/Img/blob/main/MATHEUS%20CAMARA.jpg?raw=true",
+      title: "Matheus",
+      subtitle: "Luz natural",
+    },
+    {
+      id: 3,
+      img: "https://github.com/LucasLatsch/Img/blob/main/JORGE%20ARAUJO.jpg?raw=true",
+      title: "Jorge",
+      subtitle: "Varanda espaçosa",
+    },
+    {
+      id: 4,
+      img: "https://github.com/LucasLatsch/Img/blob/main/Lucas%20Latsch.jpg?raw=true",
+      title: "Lucas",
+      subtitle: "Pronta para jantares",
+    },
+  ];
+
   return (
     <>
       <motion.div
@@ -33,7 +60,7 @@ export default function Sobre({ setSelectedItem }) {
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.5 }}
         style={{
-          backgroundImage: `url(${SobreImg})`,
+          backgroundImage: `url("https://github.com/LucasLatsch/Img/blob/main/SOBRE.jpg?raw=true")`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           display: "flex",
@@ -160,10 +187,10 @@ export default function Sobre({ setSelectedItem }) {
                 padding: "15px",
               }}
             >
-              {[1, 2, 3, 4].map((item) => (
+              {equipe.map((item) => (
                 <Col
                   md={4}
-                  key={item}
+                  key={item.id}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -176,7 +203,7 @@ export default function Sobre({ setSelectedItem }) {
                     style={{
                       width: "18rem",
                       height: "20rem",
-                      backgroundImage: `url(${SobreImg})`,
+                      backgroundImage: `url(${item.img})`,
                       backgroundPosition: "center",
                       backgroundSize: "cover",
                     }}
@@ -188,11 +215,8 @@ export default function Sobre({ setSelectedItem }) {
                         flexDirection: "column",
                       }}
                     >
-                      <Card.Title>Jhorran Sant</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text>
+                      <Card.Title>{item.title}</Card.Title>
+                      <Card.Text>{item.subtitle}</Card.Text>
                     </Card.Body>
                   </Card>
                 </Col>

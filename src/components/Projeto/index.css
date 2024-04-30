@@ -1,11 +1,23 @@
-.carousel-item.active {
-  height: 70vh;
-}
-.carousel-item {
-  height: 70vh;
-}
 .carousel {
-  height: 70vh;
+  width: 50vw;
+}
+
+@media screen and (max-width: 1024px) {
+  .carousel {
+    width: 65vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .carousel {
+    width: 85vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .carousel {
+    width: 90vw;
+  }
 }
 
 .card-body {

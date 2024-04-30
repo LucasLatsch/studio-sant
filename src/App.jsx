@@ -1,10 +1,9 @@
-import { motion, AnimatePresence } from "framer-motion";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Card from "./components/Card";
 import Principal from "./components/Principal";
 import Video from "./components/Video";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function App() {
   const [componenteAtivo, setComponenteAtivo] = useState(1);

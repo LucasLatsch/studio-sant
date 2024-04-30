@@ -28,7 +28,7 @@ export default function Contato({ setSelectedItem }) {
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.5 }}
         style={{
-          backgroundImage: `url(${ContatoImg})`,
+          backgroundImage: `url("https://github.com/LucasLatsch/Img/blob/main/CONTATO.jpg?raw=true")`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           display: "flex",
