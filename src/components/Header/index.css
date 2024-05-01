@@ -1,0 +1,11 @@
+.btnClose {
+  font-size: 25px;
+  cursor: pointer;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.white {
+  color: white;
+}

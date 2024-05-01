@@ -17,6 +17,23 @@
   background: #555; /* Cor da "mão" quando hover */
 }
 
+.sobre {
+  background-image: url("https://github.com/LucasLatsch/Img/blob/main/SOBRE.jpg?raw=true");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 .sobre iframe {
   border-radius: 5px;
+  background-color: black;
+}
+
+.d-flex-justify-space-between {
+  display: flex;
+  justify-content: space-between;
 }

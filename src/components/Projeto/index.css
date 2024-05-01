@@ -61,16 +61,12 @@
   align-items: center;
 }
 
-.white {
-  color: white;
-}
-
 .d-flex-justify-space-around {
   display: flex;
   justify-content: space-around;
 }
 
-.back {
+.projeto {
   background-image: url("https://github.com/LucasLatsch/Img/blob/main/RS_IMG01.jpg?raw=true");
   background-position: center;
   background-size: cover;
@@ -95,14 +91,6 @@
   border-radius: 5px;
   right: 0px;
   margin: 5px;
-}
-
-.btnClose {
-  font-size: 25px;
-  cursor: pointer;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
 }
 
 .inner-content {

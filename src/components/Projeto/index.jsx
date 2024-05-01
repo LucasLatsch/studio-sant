@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
-import Logo from "../Logo";
+import Header from "../Header";
 import { motion } from "framer-motion";
 import Carousel from "react-bootstrap/Carousel";
 import Card from "react-bootstrap/Card";
@@ -69,21 +69,14 @@ export default function Projeto({ setSelectedItem }) {
   return (
     <>
       <motion.div
-        className="content back"
+        className="content projeto"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.5 }}
       >
         <div className="inner-content">
-          <Row className="white p-0 m-0">
-            <Col className="p-0">
-              <Logo />
-            </Col>
-            <Col className="d-flex justify-content-end p-0">
-              <IoClose className="btnClose" onClick={() => handleClick()} />
-            </Col>
-          </Row>
+          <Header handleClick={handleClick} color={"white"} />
           <Row className="d-flex-justify-space-around">
             <Carousel>
               {items.map((item) => (

@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 import { motion } from "framer-motion";
-import SobreImg from "../../assets/SOBRE.jpg";
-import Teste from "../../assets/fundo-studio-jsant.jpg";
-import Logo from "../Logo";
-import { IoClose } from "react-icons/io5";
+import Header from "../Header";
 import { Row, Col } from "react-bootstrap";
 import YouTube from "react-youtube";
 import Card from "react-bootstrap/Card";
-import Video from "../Video";
 
 export default function Sobre({ setSelectedItem }) {
   const [expanded, setExpanded] = useState(false);
@@ -54,55 +50,21 @@ export default function Sobre({ setSelectedItem }) {
   return (
     <>
       <motion.div
-        className="content"
+        className="content sobre"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.5 }}
-        style={{
-          backgroundImage: `url("https://github.com/LucasLatsch/Img/blob/main/SOBRE.jpg?raw=true")`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          display: "flex",
-          justifyContent: "start",
-          alignItems: "center",
-          overflowX: "hidden",
-          overflowY: "hidden",
-        }}
       >
-        <div
-          style={{
-            display: "flex",
-            height: "100%",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <Row>
-            <Col>
-              <Logo />
-            </Col>
-            <Col style={{ display: "flex", justifyContent: "end" }}>
-              <IoClose
-                style={{
-                  fontSize: "25px",
-                  cursor: "pointer",
-                  position: "fixed",
-                }}
-                onClick={() => handleClick()}
-              />
-            </Col>
-          </Row>
-          <Row style={{ justifyContent: "space-between" }}>
-            <Col md={4}>
+        <div className="inner-content">
+          <Header handleClick={handleClick} />
+          <Row className="d-flex-justify-space-between p-0 m-0">
+            <Col md={5} className="p-0 m-0">
               <p
                 style={{
-                  display: "flex",
-                  textAlign: "justify",
-                  width: "370px",
-                  fontSize: "16px",
-                  marginLeft: "9px",
+                  fontSize: "20px", //tava 16px
+                  margin: "0px",
+                  fontWeight: "300", //tava sem
                 }}
               >
                 “Você é o protagonista” <br />
@@ -117,47 +79,33 @@ export default function Sobre({ setSelectedItem }) {
                 experiência mais que memorável...
               </p>
             </Col>
-            <Col md={5} style={{ display: "flex", justifyContent: "center" }}>
-              <div
-                style={{
-                  borderRadius: "20px",
+            <Col md={7} className="d-flex justify-content-end p-0 m-0">
+              <YouTube
+                videoId="84oBrArWcM0"
+                opts={{
+                  width: "550px",
+                  height: "300px",
+                  playerVars: {
+                    mute: 0,
+                    autoplay: 1,
+                    controls: 1,
+                    fs: 1,
+                    color: "white",
+                    loop: 0,
+                    rel: 0,
+                  },
                 }}
-              >
-                <YouTube
-                  className="sobre"
-                  videoId="84oBrArWcM0"
-                  opts={{
-                    width: "470px",
-                    height: "264px",
-                    playerVars: {
-                      mute: 0,
-                      autoplay: 1,
-                      controls: 1,
-                      fs: 1,
-                      color: "white",
-                      loop: 0,
-                      rel: 0,
-                    },
-                  }}
-                />
-              </div>
+              />
             </Col>
           </Row>
-          <Row
-            style={{
-              display: "grid",
-              alignContent: "end",
-              justifyContent: "center",
-            }}
-          >
-            <Col>
+          <Row>
+            <Col className="d-flex-justify-space-around p-0 mt-2">
               <button
                 onClick={() => setExpanded(!expanded)}
                 style={{
                   backgroundColor: "rgba(255,255,255,0.3)",
                   borderRadius: "15px",
-                  padding: "5px",
-                  width: "150px",
+                  padding: "5px 20px 5px 20px",
                 }}
               >
                 {expanded ? "Ver Menos" : "Ver Mais"}
@@ -169,60 +117,33 @@ export default function Sobre({ setSelectedItem }) {
       {expanded && (
         <motion.div
           ref={expandedContentRef}
-          className="content1"
-          // exit={{ opacity: 0, scale: 0.8 }}
+          className="content1 back2"
           transition={{ duration: 0.5 }}
-          style={{
-            backgroundImage: `url(${Teste})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
         >
-          <div>
-            <Row
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "start",
-                padding: "15px",
-              }}
-            >
-              {equipe.map((item) => (
-                <Col
-                  md={4}
-                  key={item.id}
+          <Row className="p-0">
+            {equipe.map((item) => (
+              <Col
+                className="d-flex justify-content-center mb-3"
+                md={6}
+                lg={4}
+                xl={3}
+                xxl={3}
+                key={item.id}
+              >
+                <Card
+                  className="cd"
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "10px",
-                    padding: "10px",
+                    backgroundImage: `url(${item.img})`,
                   }}
                 >
-                  <Card
-                    style={{
-                      width: "18rem",
-                      height: "20rem",
-                      backgroundImage: `url(${item.img})`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                    }}
-                  >
-                    <Card.Body
-                      style={{
-                        display: "flex",
-                        justifyContent: "end",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <Card.Title>{item.title}</Card.Title>
-                      <Card.Text>{item.subtitle}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </div>
+                  <Card.Body>
+                    <Card.Title>{item.title}</Card.Title>
+                    <Card.Text>{item.subtitle}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
         </motion.div>
       )}
     </>
