@@ -2,24 +2,20 @@ import React from "react";
 
 function Logo() {
   return (
-    <div>
-      <h1
-        style={{
-          gap: "10px",
-          display: "flex",
-          width: "250px",
-          justifyContent: "center",
-        }}
-      >
-        <span style={{ fontFamily: "Raleway", fontWeight: "100" }}>Studio</span>
-        <span style={{ fontWeight: "400" }}>J.Sant </span>
+    <div
+      style={{
+        width: "fit-content",
+        minWidth: "max-content",
+        textAlign: "center",
+      }}
+    >
+      <h1>
+        <span style={{ fontWeight: "100" }}>Studio</span>
+        <span style={{ fontWeight: "400", marginLeft: "5px" }}>J.Sant </span>
       </h1>
       <h6
         style={{
           fontWeight: "300",
-          display: "flex",
-          width: "250px",
-          justifyContent: "center",
         }}
       >
         arquitetura . arte . design

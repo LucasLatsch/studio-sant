@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
-import { Row, Col, Modal, Button } from "react-bootstrap"; // Importe o Modal e o Button do react-bootstrap
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
 import Logo from "../Logo";
 import { motion } from "framer-motion";
 import Carousel from "react-bootstrap/Carousel";
 import Card from "react-bootstrap/Card";
-import Teste from "../../assets/fundo-studio-jsant.jpg";
 
 export default function Projeto({ setSelectedItem }) {
   const [expanded, setExpanded] = useState(false);
-  const [showModal, setShowModal] = useState(false); // Estado para controlar a exibição do modal
-  const [selectedImg, setSelectedImg] = useState(""); // Estado para armazenar a imagem selecionada
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImg, setSelectedImg] = useState("");
   const expandedContentRef = useRef(null);
   useEffect(() => {
     if (expanded && expandedContentRef.current) {
@@ -25,13 +24,11 @@ export default function Projeto({ setSelectedItem }) {
   };
 
   const handleCardClick = (img) => {
-    // Função para lidar com o clique no card
     setSelectedImg(img);
-    setShowModal(true); // Abre o modal quando o card é clicado
+    setShowModal(true);
   };
 
   const closeModal = () => {
-    // Função para fechar o modal
     setShowModal(false);
     setSelectedImg("");
   };
@@ -72,79 +69,43 @@ export default function Projeto({ setSelectedItem }) {
   return (
     <>
       <motion.div
-        className="content"
+        className="content back"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.5 }}
-        style={{
-          backgroundImage: `url("https://github.com/LucasLatsch/Img/blob/main/RS_IMG01.jpg?raw=true")`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          display: "flex",
-          justifyContent: "start",
-          alignItems: "center",
-          overflowX: "hidden",
-          overflowY: "hidden",
-        }}
       >
-        <div
-          style={{
-            display: "flex",
-            height: "100%",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <Row style={{ color: "white" }}>
-            <Col>
+        <div className="inner-content">
+          <Row className="white p-0 m-0">
+            <Col className="p-0">
               <Logo />
             </Col>
-            <Col style={{ display: "flex", justifyContent: "end" }}>
-              <IoClose
-                style={{
-                  fontSize: "25px",
-                  cursor: "pointer",
-                  position: "fixed",
-                  backgroundColor: "rgba(0, 0, 0, 0.3)",
-                  borderRadius: "5px",
-                }}
-                onClick={() => handleClick()}
-              />
+            <Col className="d-flex justify-content-end p-0">
+              <IoClose className="btnClose" onClick={() => handleClick()} />
             </Col>
           </Row>
-          <Row style={{ justifyContent: "space-around" }}>
+          <Row className="d-flex-justify-space-around">
             <Carousel>
               {items.map((item) => (
                 <Carousel.Item key={item.id}>
                   <img
-                    style={{
-                      // height: "auto",
-                      width: "100%",
-                    }}
+                    loading="lazy"
+                    alt={item.title}
+                    width="100%"
                     src={item.img}
                   />
                 </Carousel.Item>
               ))}
             </Carousel>
-            {/* </div> */}
           </Row>
-          <Row
-            style={{
-              display: "grid",
-              alignContent: "end",
-              justifyContent: "center",
-            }}
-          >
-            <Col>
+          <Row>
+            <Col className="d-flex-justify-space-around p-0 mt-2">
               <button
                 onClick={() => setExpanded(!expanded)}
                 style={{
                   backgroundColor: "rgba(255,255,255,0.3)",
                   borderRadius: "15px",
-                  padding: "5px",
-                  width: "150px",
+                  padding: "5px 20px 5px 20px",
                 }}
               >
                 {expanded ? "Ver Menos" : "Ver Mais"}
@@ -156,77 +117,40 @@ export default function Projeto({ setSelectedItem }) {
       {expanded && (
         <motion.div
           ref={expandedContentRef}
-          className="content1"
+          className="content1 back2"
           transition={{ duration: 0.5 }}
-          style={{
-            backgroundImage: `url(${Teste})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
         >
-          <div>
-            <Row
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "start",
-                padding: "15px",
-              }}
-            >
-              {items.map((item) => (
-                <Col
-                  md={6}
-                  lg={4}
-                  xl={4}
-                  xxl={3}
-                  key={item.id}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "10px",
-                    padding: "10px",
-                  }}
+          <Row className="p-0">
+            {items.map((item) => (
+              <Col
+                className="d-flex justify-content-center mb-3"
+                md={6}
+                lg={4}
+                xl={3}
+                xxl={3}
+                key={item.id}
+              >
+                <Card
+                  className="cd"
+                  style={{ backgroundImage: `url(${item.img})` }}
+                  onClick={() => handleCardClick(item.img)}
                 >
-                  <Card
-                    style={{
-                      height: "20rem",
-                      maxWidth: "19.25rem",
-                      backgroundImage: `url(${item.img})`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => handleCardClick(item.img)}
-                  >
-                    <Card.Body>
-                      <div>
-                        <Card.Title>{item.title}</Card.Title>
-                        <Card.Text>{item.subtitle}</Card.Text>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </div>
+                  <Card.Body>
+                    <div>
+                      <Card.Title>{item.title}</Card.Title>
+                      <Card.Text>{item.subtitle}</Card.Text>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
         </motion.div>
       )}
-      <Modal show={showModal} onHide={closeModal} centered>
+      <Modal show={showModal} onHide={closeModal}>
         <Modal.Body>
-          <IoClose
-            style={{
-              fontSize: "25px",
-              cursor: "pointer",
-              position: "absolute",
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              borderRadius: "5px",
-              right: "0px",
-              margin: "5px",
-            }}
-            onClick={closeModal}
-          />
-          <img src={selectedImg} alt="Imagem" style={{ width: "100%" }} />
+          <IoClose className="btnModal" onClick={closeModal} />
+          <img src={selectedImg} alt="Imagem" style={{ height: "90vh" }} />
         </Modal.Body>
       </Modal>
     </>

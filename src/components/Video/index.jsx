@@ -38,6 +38,7 @@ function Video({ onTimeout, showSkipButton }) {
             rel: 0,
           },
         }}
+        onEnd={onTimeout}
       />
       {showSkipButton && (
         <button
