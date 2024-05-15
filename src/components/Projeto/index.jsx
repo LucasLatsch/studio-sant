@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./index.css";
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
@@ -11,12 +12,46 @@ export default function Projeto({ setSelectedItem }) {
   const [expanded, setExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState("");
-  const expandedContentRef = useRef(null);
+  const [carouselImages, setCarouselImages] = useState([]);
+  const [projetoImages, setProjetoImages] = useState([]);
+  const [loadedImages, setLoadedImages] = useState([]);
+
   useEffect(() => {
-    if (expanded && expandedContentRef.current) {
-      expandedContentRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [expanded]);
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(
+          "https://663e5f4de1913c4767977256.mockapi.io/Imagens"
+        );
+        // Filtrando apenas as imagens com a categoria "Carousel"
+        const carouselImgs = response.data.filter(
+          (image) => image.Categoria === "Carousel"
+        );
+        setCarouselImages(carouselImgs);
+        // Filtrando apenas as imagens com a categoria "Projeto"
+        const projetoImgs = response.data.filter(
+          (image) => image.Categoria === "Projeto"
+        );
+        setProjetoImages(projetoImgs);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+    fetchImages();
+  }, []);
+
+  useEffect(() => {
+    const loadImage = (url) => {
+      const image = new Image();
+      image.src = url;
+      image.onload = () => {
+        setLoadedImages((prevLoadedImages) => [...prevLoadedImages, url]);
+      };
+    };
+
+    projetoImages.forEach((item) => {
+      loadImage(item.url);
+    });
+  }, [projetoImages]);
 
   const handleClick = () => {
     setSelectedItem(null);
@@ -33,39 +68,6 @@ export default function Projeto({ setSelectedItem }) {
     setSelectedImg("");
   };
 
-  const items = [
-    {
-      id: 1,
-      img: "https://github.com/LucasLatsch/Img/blob/main/01.jpg?raw=true",
-      title: "Cozinha Moderna",
-      subtitle: "Some quick example text",
-    },
-    {
-      id: 2,
-      img: "https://github.com/LucasLatsch/Img/blob/main/02.jpg?raw=true",
-      title: "Casa ao Dia",
-      subtitle: "Luz natural",
-    },
-    {
-      id: 3,
-      img: "https://github.com/LucasLatsch/Img/blob/main/03.jpg?raw=true",
-      title: "Casa ao Dia",
-      subtitle: "Varanda espaçosa",
-    },
-    {
-      id: 4,
-      img: "https://github.com/LucasLatsch/Img/blob/main/04.jpg?raw=true",
-      title: "Cozinha Gourmet",
-      subtitle: "Pronta para jantares",
-    },
-    {
-      id: 5,
-      img: "https://github.com/LucasLatsch/Img/blob/main/05.jpg?raw=true",
-      title: "Cozinha Focada",
-      subtitle: "Detalhe na Mesa",
-    },
-  ];
-
   return (
     <>
       <motion.div
@@ -79,13 +81,13 @@ export default function Projeto({ setSelectedItem }) {
           <Header handleClick={handleClick} color={"white"} />
           <Row className="d-flex-justify-space-around">
             <Carousel>
-              {items.map((item) => (
+              {carouselImages.map((item) => (
                 <Carousel.Item key={item.id}>
                   <img
                     loading="lazy"
                     alt={item.title}
                     width="100%"
-                    src={item.img}
+                    src={item.url}
                   />
                 </Carousel.Item>
               ))}
@@ -108,13 +110,9 @@ export default function Projeto({ setSelectedItem }) {
         </div>
       </motion.div>
       {expanded && (
-        <motion.div
-          ref={expandedContentRef}
-          className="content1 back2"
-          transition={{ duration: 0.5 }}
-        >
-          <Row className="p-0">
-            {items.map((item) => (
+        <motion.div className="content1 back2" transition={{ duration: 0.5 }}>
+          <Row className="scroll-component p-0">
+            {projetoImages.map((item) => (
               <Col
                 className="d-flex justify-content-center mb-3"
                 md={6}
@@ -125,8 +123,12 @@ export default function Projeto({ setSelectedItem }) {
               >
                 <Card
                   className="cd"
-                  style={{ backgroundImage: `url(${item.img})` }}
-                  onClick={() => handleCardClick(item.img)}
+                  style={{
+                    backgroundImage: `url(${item.url})`,
+                    opacity: loadedImages.includes(item.url) ? 1 : 0,
+                    transition: "opacity 0.5s ease",
+                  }}
+                  onClick={() => handleCardClick(item.url)}
                 >
                   <Card.Body>
                     <div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import "./index.css";
 import { motion } from "framer-motion";
 import Header from "../Header";
@@ -9,7 +10,26 @@ import Card from "react-bootstrap/Card";
 export default function Sobre({ setSelectedItem }) {
   const [expanded, setExpanded] = useState(false);
   const expandedContentRef = useRef(null);
+  const [perfilImages, setPerfilImages] = useState([]);
+
   useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(
+          "https://663e5f4de1913c4767977256.mockapi.io/Imagens"
+        );
+        // Filtrando apenas as imagens com a categoria "Principal"
+        const perfilImgs = response.data.filter(
+          (image) => image.Categoria === "Perfil"
+        );
+        console.log(perfilImgs);
+        setPerfilImages(perfilImgs);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+    fetchImages();
+
     if (expanded && expandedContentRef.current) {
       expandedContentRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -19,33 +39,6 @@ export default function Sobre({ setSelectedItem }) {
     setSelectedItem(null);
     setExpanded(false);
   };
-
-  const equipe = [
-    {
-      id: 1,
-      img: "https://github.com/LucasLatsch/Img/blob/main/Jhorran%20Sant.jpg?raw=true",
-      title: "Jhorran",
-      subtitle: "Some quick example text",
-    },
-    {
-      id: 2,
-      img: "https://github.com/LucasLatsch/Img/blob/main/MATHEUS%20CAMARA.jpg?raw=true",
-      title: "Matheus",
-      subtitle: "Luz natural",
-    },
-    {
-      id: 3,
-      img: "https://github.com/LucasLatsch/Img/blob/main/JORGE%20ARAUJO.jpg?raw=true",
-      title: "Jorge",
-      subtitle: "Varanda espaçosa",
-    },
-    {
-      id: 4,
-      img: "https://github.com/LucasLatsch/Img/blob/main/Lucas%20Latsch.jpg?raw=true",
-      title: "Lucas",
-      subtitle: "Pronta para jantares",
-    },
-  ];
 
   return (
     <>
@@ -121,7 +114,7 @@ export default function Sobre({ setSelectedItem }) {
           transition={{ duration: 0.5 }}
         >
           <Row className="p-0">
-            {equipe.map((item) => (
+            {perfilImages.map((item) => (
               <Col
                 className="d-flex justify-content-center mb-3"
                 md={6}
@@ -133,12 +126,12 @@ export default function Sobre({ setSelectedItem }) {
                 <Card
                   className="cd"
                   style={{
-                    backgroundImage: `url(${item.img})`,
+                    backgroundImage: `url(${item.url})`,
                   }}
                 >
                   <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>{item.subtitle}</Card.Text>
+                    <Card.Title>{item.Nome}</Card.Title>
+                    <Card.Text>{item.Titulo}</Card.Text>
                   </Card.Body>
                 </Card>
               </Col>

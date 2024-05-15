@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import "./index.css";
 import Item from "../../components/Item";
@@ -9,67 +10,63 @@ import GaleriaComponent from "../../components/Art";
 
 function Principal() {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [principalImages, setPrincipalImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(
+          "https://663e5f4de1913c4767977256.mockapi.io/Imagens"
+        );
+        // Filtrando apenas as imagens com a categoria "Principal"
+        const principalImgs = response.data.filter(
+          (image) => image.Categoria === "Principal"
+        );
+        console.log(principalImgs);
+        setPrincipalImages(principalImgs);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   const handleItemClick = (itemId) => {
     setSelectedItem(itemId === selectedItem ? null : itemId);
+    console.log(itemId);
   };
 
   return (
     <div className="container">
       <div>
-        <Item
-          key={1}
-          id={1}
-          img={
-            "https://github.com/LucasLatsch/Img/blob/main/RS_IMG01.jpg?raw=true"
-          }
-          title={"projetos."}
-          isSelected={selectedItem === 1}
-          onClick={handleItemClick}
-        />
-        <Item
-          key={2}
-          id={2}
-          img={
-            "https://github.com/LucasLatsch/Img/blob/main/SOBRE.jpg?raw=true"
-          }
-          title={"sobre."}
-          isSelected={selectedItem === 2}
-          onClick={handleItemClick}
-        />
-        <Item
-          key={3}
-          id={3}
-          img={
-            "https://github.com/LucasLatsch/Img/blob/main/GALERIA02.jpeg?raw=true"
-          }
-          title={"arte & design."}
-          isSelected={selectedItem === 3}
-          onClick={handleItemClick}
-        />
-        <Item
-          key={4}
-          id={4}
-          img={
-            "https://github.com/LucasLatsch/Img/blob/main/CONTATO.jpg?raw=true"
-          }
-          title={"contato."}
-          isSelected={selectedItem === 4}
-          onClick={handleItemClick}
-        />
+        {principalImages.map((image) => (
+          <Item
+            key={image.id}
+            id={image.id}
+            img={image.url}
+            title={image.Titulo}
+            isSelected={selectedItem === image.id}
+            onClick={handleItemClick}
+          />
+        ))}
       </div>
       <AnimatePresence>
-        {selectedItem === 1 && (
-          <ProjetoComponent setSelectedItem={setSelectedItem} />
-        )}
-        {selectedItem === 2 && (
-          <SobreComponent setSelectedItem={setSelectedItem} />
-        )}
-        {selectedItem === 3 && (
-          <GaleriaComponent setSelectedItem={setSelectedItem} />
-        )}
-        {selectedItem === 4 && (
-          <ContatoComponent setSelectedItem={setSelectedItem} />
+        {selectedItem && (
+          <>
+            {selectedItem === "1" && (
+              <ProjetoComponent setSelectedItem={setSelectedItem} />
+            )}
+            {selectedItem === "2" && (
+              <SobreComponent setSelectedItem={setSelectedItem} />
+            )}
+            {selectedItem === "3" && (
+              <GaleriaComponent setSelectedItem={setSelectedItem} />
+            )}
+            {selectedItem === "4" && (
+              <ContatoComponent setSelectedItem={setSelectedItem} />
+            )}
+          </>
         )}
       </AnimatePresence>
     </div>

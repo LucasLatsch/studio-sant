@@ -1,6 +1,9 @@
 .carousel {
   width: 60vw;
 }
+.carousel img {
+  max-height: 74vh;
+}
 
 @media screen and (max-width: 1024px) {
   .carousel {
@@ -19,6 +22,11 @@
     width: 90vw;
   }
 } */
+
+.scroll-component {
+  overflow-y: scroll;
+  max-height: 95vh;
+}
 
 .cd {
   height: 20rem;
