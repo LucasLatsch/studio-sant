@@ -1,6 +1,5 @@
 import React from "react";
-import ContatoImg from "../../assets/CONTATO.jpg";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Modal, Form, Button } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
 import Logo from "../Logo";
 import { FaLinkedin } from "react-icons/fa";
@@ -9,15 +8,50 @@ import { FaPinterestP } from "react-icons/fa";
 import { TbMailShare } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import emailjs from "@emailjs/browser";
 
 export default function Contato({ setSelectedItem }) {
   const [show, setShow] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function sendEmail(e) {
+    e.preventDefault();
+
+    if (name === "" || email === "" || message === "") {
+      alert("preencha todos os campos");
+      return;
+    }
+
+    const templateParams = {
+      from_name: name,
+      message: message,
+      email: email,
+    };
+
+    emailjs
+      .send(
+        "service_gvpmr0s",
+        "template_dfka4x5",
+        templateParams,
+        "XPmxls2lM6E3YaHSQ"
+      )
+      .then(
+        (response) => {
+          setName("");
+          setEmail("");
+          setMessage("");
+          console.log(email);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
 
   return (
     <>
@@ -101,35 +135,51 @@ export default function Contato({ setSelectedItem }) {
           </Row>
         </div>
       </motion.div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Body style={{ padding: "10px", color: "white" }}>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Nome</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite seu nome aqui"
+                autoFocus
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
-                autoFocus
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
             </Form.Group>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Label>Mensagem</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Digite sua mensagem aqui"
+                onChange={(e) => setMessage(e.target.value)}
+                value={message}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Fechar
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={sendEmail}>
+            Enviar
           </Button>
         </Modal.Footer>
       </Modal>

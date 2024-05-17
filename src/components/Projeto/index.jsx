@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./index.css";
-import { Row, Col, Modal, Button } from "react-bootstrap";
-import { IoClose } from "react-icons/io5";
+import { Row, Col, Modal } from "react-bootstrap";
 import Header from "../Header";
 import { motion } from "framer-motion";
 import Carousel from "react-bootstrap/Carousel";
 import Card from "react-bootstrap/Card";
 
 export default function Projeto({ setSelectedItem }) {
+  const expandedContentRef = useRef(null);
   const [expanded, setExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState("");
@@ -37,7 +37,10 @@ export default function Projeto({ setSelectedItem }) {
       }
     };
     fetchImages();
-  }, []);
+    if (expanded && expandedContentRef.current) {
+      expandedContentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [expanded]);
 
   useEffect(() => {
     const loadImage = (url) => {
@@ -110,7 +113,11 @@ export default function Projeto({ setSelectedItem }) {
         </div>
       </motion.div>
       {expanded && (
-        <motion.div className="content1 back2" transition={{ duration: 0.5 }}>
+        <motion.div
+          ref={expandedContentRef}
+          className="content1 back2"
+          transition={{ duration: 0.5 }}
+        >
           <Row className="scroll-component p-0">
             {projetoImages.map((item) => (
               <Col
@@ -142,9 +149,9 @@ export default function Projeto({ setSelectedItem }) {
           </Row>
         </motion.div>
       )}
-      <Modal show={showModal} onHide={closeModal}>
-        <Modal.Body>
-          <IoClose className="btnModal" onClick={closeModal} />
+      <Modal show={showModal} onHide={closeModal} className="modal-content">
+        <Modal.Body className="teste-modal">
+          {/* <IoClose className="btnModal" onClick={closeModal} /> */}
           <img src={selectedImg} alt="Imagem" style={{ height: "90vh" }} />
         </Modal.Body>
       </Modal>

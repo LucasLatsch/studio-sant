@@ -8,8 +8,8 @@ import YouTube from "react-youtube";
 import Card from "react-bootstrap/Card";
 
 export default function Sobre({ setSelectedItem }) {
-  const [expanded, setExpanded] = useState(false);
   const expandedContentRef = useRef(null);
+  const [expanded, setExpanded] = useState(false);
   const [perfilImages, setPerfilImages] = useState([]);
 
   useEffect(() => {
