@@ -35,10 +35,10 @@ export default function Contato({ setSelectedItem }) {
 
     emailjs
       .send(
-        "service_gvpmr0s",
-        "template_dfka4x5",
+        "service_4n2zlk1",
+        "template_firg295",
         templateParams,
-        "XPmxls2lM6E3YaHSQ"
+        "ZwPd-81Ic35VlBQFY"
       )
       .then(
         (response) => {
