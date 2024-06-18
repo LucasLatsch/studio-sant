@@ -61,6 +61,13 @@ export default function Projeto({ setSelectedItem }) {
     setExpanded(false);
   };
 
+  const handleVerMenosClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      setExpanded(false);
+    }, 200);
+  };
+
   const handleCardClick = (img) => {
     setSelectedImg(img);
     setShowModal(true);
@@ -86,47 +93,62 @@ export default function Projeto({ setSelectedItem }) {
             <Carousel>
               {carouselImages.map((item) => (
                 <Carousel.Item key={item.id}>
-                  <img
-                    loading="lazy"
-                    alt={item.title}
-                    width="100%"
-                    src={item.url}
-                  />
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2 }}
+                  >
+                    <img
+                      loading="lazy"
+                      alt={item.title}
+                      width="100%"
+                      src={item.url}
+                    />
+                  </motion.div>
                 </Carousel.Item>
               ))}
             </Carousel>
           </Row>
-          <Row>
+          <Row style={{ minHeight: "48px" }}>
             <Col className="d-flex-justify-space-around p-0 mt-2">
-              <button
-                onClick={() => setExpanded(!expanded)}
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.3)",
-                  borderRadius: "15px",
-                  padding: "5px 20px 5px 20px",
-                }}
-              >
-                {expanded ? "Ver Menos" : "Ver Mais"}
-              </button>
+              {expanded ? (
+                ""
+              ) : (
+                <button
+                  onClick={() => setExpanded(!expanded)}
+                  style={{
+                    backgroundColor: "rgba(255,255,255,0.3)",
+                    borderRadius: "15px",
+                    padding: "5px 20px 5px 20px",
+                  }}
+                >
+                  Ver Mais
+                </button>
+              )}
             </Col>
           </Row>
         </div>
       </motion.div>
-      {expanded && (
-        <motion.div
-          ref={expandedContentRef}
-          className="content1 back2"
-          transition={{ duration: 0.5 }}
-        >
-          <Row className="scroll-component p-0">
-            {projetoImages.map((item) => (
-              <Col
-                className="d-flex justify-content-center mb-3"
-                md={6}
-                lg={4}
-                xl={3}
-                xxl={3}
-                key={item.id}
+      <motion.div
+        ref={expandedContentRef}
+        className="content1 back2"
+        style={{ display: expanded ? "block" : "none" }}
+        transition={{ duration: 0.5 }}
+      >
+        <Row className="scroll-component p-0">
+          {projetoImages.map((item) => (
+            <Col
+              className="d-flex justify-content-center mb-3"
+              md={6}
+              lg={4}
+              xl={3}
+              xxl={3}
+              key={item.id}
+            >
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2 }}
               >
                 <Card
                   className="cd"
@@ -144,11 +166,25 @@ export default function Projeto({ setSelectedItem }) {
                     </div>
                   </Card.Body>
                 </Card>
-              </Col>
-            ))}
-          </Row>
-        </motion.div>
-      )}
+              </motion.div>
+            </Col>
+          ))}
+        </Row>
+        <Row>
+          <Col className="d-flex-justify-space-around p-0 mt-2">
+            <button
+              onClick={handleVerMenosClick}
+              style={{
+                backgroundColor: "rgba(255,255,255,0.3)",
+                borderRadius: "15px",
+                padding: "5px 20px 5px 20px",
+              }}
+            >
+              Ver Menos
+            </button>
+          </Col>
+        </Row>
+      </motion.div>
       <Modal show={showModal} onHide={closeModal} className="modal-content">
         <Modal.Body className="teste-modal">
           {/* <IoClose className="btnModal" onClick={closeModal} /> */}

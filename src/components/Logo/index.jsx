@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 function Logo() {
   return (
@@ -9,11 +10,12 @@ function Logo() {
         textAlign: "center",
       }}
     >
-      <h1>
+      <h1 className="highText">
         <span style={{ fontWeight: "100" }}>Studio</span>
         <span style={{ fontWeight: "400", marginLeft: "5px" }}>J.Sant </span>
       </h1>
       <h6
+        className="lowText"
         style={{
           fontWeight: "300",
         }}

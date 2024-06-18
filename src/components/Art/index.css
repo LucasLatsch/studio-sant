@@ -12,16 +12,16 @@
 }
 
 /* @media screen and (max-width: 768px) {
-  .carousel {
-    width: 85vw;
+    .carousel {
+      width: 85vw;
+    }
   }
-}
-
-@media screen and (max-width: 425px) {
-  .carousel {
-    width: 90vw;
-  }
-} */
+  
+  @media screen and (max-width: 425px) {
+    .carousel {
+      width: 90vw;
+    }
+  } */
 
 .scroll-component {
   overflow-y: scroll;
@@ -67,8 +67,8 @@
   justify-content: space-around;
 }
 
-.projeto {
-  background-image: url("https://github.com/LucasLatsch/Img/blob/main/Principal/jpeg-optimizer_PROJETO_Baixa.jpg?raw=true");
+.quadro {
+  background-image: url("https://github.com/LucasLatsch/Img/blob/main/Principal/jpeg-optimizer_GALERIA02.jpeg?raw=true");
   background-position: center;
   background-size: cover;
   display: flex;

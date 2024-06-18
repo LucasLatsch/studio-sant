@@ -59,7 +59,7 @@ export default function Sobre({ setSelectedItem }) {
         <div className="inner-content">
           <Header handleClick={handleClick} />
           <Row className="d-flex-justify-space-between p-0 m-0">
-            <Col md={5} className="p-0 m-0">
+            <Col sm={12} md={12} lg={5} className="p-0 m-0">
               <p
                 style={{
                   fontSize: "20px", //tava 16px
@@ -79,7 +79,7 @@ export default function Sobre({ setSelectedItem }) {
                 experiência mais que memorável...
               </p>
             </Col>
-            <Col md={7} className="d-flex justify-content-end p-0 m-0">
+            <Col md={5} className="d-flex justify-content-end p-0 m-0">
               <YouTube
                 videoId="84oBrArWcM0"
                 opts={{

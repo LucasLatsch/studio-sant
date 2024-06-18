@@ -1,4 +1,6 @@
 import React from "react";
+import "./index.css";
+import Header from "../Header";
 import { Row, Col, Modal, Form, Button } from "react-bootstrap";
 import { IoClose } from "react-icons/io5";
 import Logo from "../Logo";
@@ -53,43 +55,22 @@ export default function Contato({ setSelectedItem }) {
       );
   }
 
+  const handleClick = () => {
+    setSelectedItem(null);
+    setExpanded(false);
+  };
+
   return (
     <>
       <motion.div
-        className="content"
+        className="content contato"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.5 }}
-        style={{
-          backgroundImage: `url("https://github.com/LucasLatsch/Img/blob/main/CONTATO.jpg?raw=true")`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
       >
-        <div
-          style={{
-            display: "flex",
-            height: "100%",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <Row>
-            <Col>
-              <Logo />
-            </Col>
-            <Col style={{ display: "flex", justifyContent: "end" }}>
-              <IoClose
-                style={{ fontSize: "25px", cursor: "pointer" }}
-                onClick={() => setSelectedItem(null)}
-              />
-            </Col>
-          </Row>
+        <div className="inner-content">
+          <Header handleClick={handleClick} />
           <Row>
             <Col style={{ marginLeft: "9px", fontWeight: "500" }}>
               <p>Rio de Janeiro</p>

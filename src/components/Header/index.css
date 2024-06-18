@@ -9,3 +9,15 @@
 .white {
   color: white;
 }
+
+/* @media (min-width: 480px) {
+  .btnClose {
+    font-size: 5em;
+  }
+} */
+@media (max-width: 768px) {
+  .btnClose {
+    font-size: 3em;
+    margin: 10px;
+  }
+}

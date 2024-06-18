@@ -41,14 +41,20 @@ function Principal() {
     <div className="container">
       <div>
         {principalImages.map((image) => (
-          <Item
-            key={image.id}
-            id={image.id}
-            img={image.url}
-            title={image.Titulo}
-            isSelected={selectedItem === image.id}
-            onClick={handleItemClick}
-          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
+          >
+            <Item
+              key={image.id}
+              id={image.id}
+              img={image.url}
+              title={image.Titulo}
+              isSelected={selectedItem === image.id}
+              onClick={handleItemClick}
+            />
+          </motion.div>
         ))}
       </div>
       <AnimatePresence>

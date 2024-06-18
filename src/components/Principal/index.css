@@ -7,7 +7,6 @@
   margin: 0;
   flex-direction: column;
 }
-
 .content {
   min-width: 100vw;
   height: 100vh;
